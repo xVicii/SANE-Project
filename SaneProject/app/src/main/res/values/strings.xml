@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SaneProject</string>
+    <string name="action_settings">Settings</string>
+    <string name="IPAddressLabelString">IP Address: </string>
+    <string name="unknown">Unknown</string>
+    <string name="IPAddressMenuString">Show IP Address</string>
+    <string name="LL2PDestAddress">LL2P Dest: </string>
+    <string name="LL2PSrcAddress">LL2P Src: </string>
+    <string name="LL2PType">LL2P Type: </string>
+    <string name="LL2PCRC">LL2P CRC: </string>
+    <string name="LL2PAddressLabelString">LL2P Address: </string>
+</resources>

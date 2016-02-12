@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.tracynguyen.saneproject.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/view">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/LL2PLayout"
+        android:background="#dafafb">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/LL2PDestAddress"
+            android:id="@+id/LL2PDestAddressLabel"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            android:id="@+id/LL2PDestAddressTextView"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/LL2PDestAddressLabel"
+            android:layout_toEndOf="@+id/LL2PDestAddressLabel"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/LL2PSrcAddress"
+            android:id="@+id/LL2PSrcAddressLabel"
+            android:layout_below="@+id/LL2PDestAddressLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            android:id="@+id/LL2PSrcAddressTextView"
+            android:layout_below="@+id/LL2PDestAddressLabel"
+            android:layout_toRightOf="@+id/LL2PDestAddressLabel"
+            android:layout_toEndOf="@+id/LL2PDestAddressLabel"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/LL2PType"
+            android:id="@+id/LL2PTypeFieldLabel"
+            android:layout_below="@+id/LL2PSrcAddressLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            android:id="@+id/LL2PTypeFieldTextView"
+            android:layout_below="@+id/LL2PSrcAddressLabel"
+            android:layout_toRightOf="@+id/LL2PTypeFieldLabel"
+            android:layout_toEndOf="@+id/LL2PTypeFieldLabel"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/LL2PCRC"
+            android:id="@+id/LL2PCRCLabel"
+            android:layout_below="@+id/LL2PTypeFieldLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            android:id="@+id/LL2PCRCTextView"
+            android:layout_alignTop="@+id/LL2PCRCLabel"
+            android:layout_toRightOf="@+id/LL2PCRCLabel"
+            android:layout_toEndOf="@+id/LL2PCRCLabel"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            android:id="@+id/LL2PPayloadTextView"
+            android:layout_below="@+id/LL2PCRCLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:inputType="textMultiLine"
+            android:textColor="#000000" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/view"
+        android:layout_toRightOf="@+id/LL2PLayout"
+        android:layout_toEndOf="@+id/LL2PLayout"
+        android:id="@+id/AdjacencyTableLayout"
+        android:background="#f47d7d">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/IPAddressLabelString"
+            android:id="@+id/AdjacencyTableIPAddressLabel"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/LL2PAddressLabelString"
+            android:id="@+id/AdjacencyTableLL2PAddressLabel"
+            android:layout_above="@+id/AdjacencyTableIPAddressLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/AdjacencyTableIPAddressTextEdit"
+            android:layout_alignBottom="@+id/AdjacencyTableIPAddressLabel"
+            android:layout_toRightOf="@+id/AdjacencyTableIPAddressLabel"
+            android:layout_toEndOf="@+id/AdjacencyTableIPAddressLabel" />
+
+        <EditText
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/AdjacencyTableLL2PAddressTextEdit"
+            android:layout_above="@+id/AdjacencyTableIPAddressLabel"
+            android:layout_toRightOf="@+id/AdjacencyTableIPAddressLabel"
+            android:layout_toEndOf="@+id/AdjacencyTableIPAddressLabel" />
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:text="Add"
+            android:id="@+id/AdjacencyTableAddButton"
+            android:hint="Add adjacency entry"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/AdjacencyTableClearButton"
+            android:layout_toStartOf="@+id/AdjacencyTableClearButton" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/AdjacencyTableListView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="75dp"
+            android:layout_height="50dp"
+            android:text="Clear"
+            android:id="@+id/AdjacencyTableClearButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+</RelativeLayout>
