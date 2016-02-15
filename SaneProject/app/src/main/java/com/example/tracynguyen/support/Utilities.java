@@ -24,9 +24,11 @@ public class Utilities {
     }
 
     public static String padHexString(String hexString, int length){
-        for (int i = 0; i < length; i++){
-            hexString = "0" + hexString;
-        }
+            if (hexString.length() != length*2) {
+                for (int i = 0; i < length*2 - hexString.length(); i++) {
+                    hexString = "0" + hexString;
+                }
+            }
         return hexString;
     }
 

@@ -1,5 +1,6 @@
 package com.example.tracynguyen.network;
 
+import com.example.tracynguyen.support.NetworkConstants;
 import com.example.tracynguyen.support.UIManager;
 import com.example.tracynguyen.support.Utilities;
 
@@ -90,15 +91,18 @@ public class LL2P {
     // TODO return correct length
 
     public String getSrcMACAddressHexString(){
-        return Integer.toHexString(srcMACAddress);
+        return Utilities.padHexString(Integer.toHexString(srcMACAddress),
+                NetworkConstants.LL2P_ADDRESS_LENGTH);
     }
 
     public String getDestMACAddressHexString(){
-        return Integer.toHexString(destMACAddress);
+        return Utilities.padHexString(Integer.toHexString(destMACAddress),
+                NetworkConstants.LL2P_ADDRESS_LENGTH);
     }
 
     public String getTypeFieldHexString(){
-        return Integer.toHexString(typeField);
+        return Utilities.padHexString(Integer.toHexString(typeField),
+                NetworkConstants.LL2P_TYPE_LENGTH);
     }
 
     public String getPayloadHexString(){
@@ -106,7 +110,7 @@ public class LL2P {
     }
 
     public String getCRCHexString(){
-        return CRC16.getCRCHexString();
+        return Utilities.padHexString(CRC16.getCRCHexString(), NetworkConstants.CRC_LENGTH);
     }
 
     public String toString(){
