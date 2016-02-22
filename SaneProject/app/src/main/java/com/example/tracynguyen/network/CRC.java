@@ -5,7 +5,7 @@ package com.example.tracynguyen.network;
  */
 public class CRC {
     //private Integer crcValue;
-    private int CRCvalue;
+    private Integer crcValue;
     private int crcPattern = 0x11021;
     private int checkValue;
 
@@ -13,26 +13,26 @@ public class CRC {
         resetCRC();
     }
 
-    public int getCRC(){
-         return CRCvalue; // valid syntax?
+    public Integer getCRC(){
+         return crcValue;
     }
 
     public String getCRCHexString(){
-        return Integer.toHexString(CRCvalue);
+        return Integer.toHexString(crcValue);
     }
 
-    public void setCRC(int CRC){
-        CRCvalue = CRC;
+    public void setCRC(Integer CRC){
+        crcValue = CRC;
     }
 
     public void resetCRC(){
-        CRCvalue = 0;
+        crcValue = 0;
     }
 
     public void update(byte newByte){
 
         int temp = newByte << 8;
-        int tempCRC = temp ^ CRCvalue;
+        int tempCRC = temp ^ crcValue;
 
         for (int i = 0; i < 8; i++){
             tempCRC = tempCRC << 1;
@@ -41,7 +41,8 @@ public class CRC {
             if (checkValue > 0)
                 tempCRC = tempCRC ^ crcPattern;
         }
-        CRCvalue = tempCRC;
+
+        crcValue = tempCRC;
     }
 
     public void update(byte[] byteArray){

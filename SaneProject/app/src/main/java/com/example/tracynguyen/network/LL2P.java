@@ -13,8 +13,6 @@ public class LL2P {
     private Integer typeField;
     private byte[] payload;
     private CRC CRC16;
-    private int start;
-    private int end;
     UIManager uiManager;
 
 
@@ -32,8 +30,7 @@ public class LL2P {
     }
 
     public LL2P(byte[] newByte){
-        start = 0;
-        end = newByte.length;
+        fillInLL2PFrame(newByte);
     }
 
     public void createFields(){
@@ -43,7 +40,6 @@ public class LL2P {
         payload = new byte[0];
         CRC16 = new CRC();
         calculateCRC();
-        // empty strings??
     }
 
     /* THESE METHODS CONVERT A STRING OF HEX CHARACTERS
@@ -62,7 +58,9 @@ public class LL2P {
     }
 
     public void setCRCField(String inputValue){
-        //CRC = Integer.valueOf(inputValue, 16); // ???
+        //CRC16 = Integer.valueOf(inputValue, 16);
+        //CRC16.setCRC(Long.parseLong(inputValue, 16));
+        CRC16.setCRC(Integer.valueOf(inputValue,16));
     }
 
     /* THESE METHODS CONVERT PRIMITIVE
@@ -80,15 +78,12 @@ public class LL2P {
         typeField = new Integer(inputValue);
     }
 
-    // THIS METHOD SETS THE CONTENTS OF THE PAYLOAD.
     public void setPayload(byte[] newByte){
         payload = newByte;
     }
 
     /* THESE METHODS RETURNS A HEX STRING
     REPRESENTING THE VALUE OF THE FIELD*/
-
-    // TODO return correct length
 
     public String getSrcMACAddressHexString(){
         return Utilities.padHexString(Integer.toHexString(srcMACAddress),
@@ -153,11 +148,11 @@ public class LL2P {
 
     public void fillInLL2PFrame(byte[] frame){
         String frameChars = new String(frame);
-        setDestMACAddressField(frameChars.substring(start, end));
-        setSrcMACAddressField(frameChars.substring(start, end));
-        setTypeField(frameChars.substring(start, end));
-        setPayload(Utilities.stringToByte(frameChars.substring(start, end)));
+        setDestMACAddressField(frameChars.substring(0, 6));
+        setSrcMACAddressField(frameChars.substring(6, 12));
+        setTypeField(frameChars.substring(12, 16));
+        setPayload(Utilities.stringToByte(frameChars.substring(16, frame.length - 4)));
+        CRC16 = new CRC(); // had to put this in to reset CRC to 0 for calculation
         calculateCRC();
-        uiManager.updateLL2PDisplay(this);
     }
 }

@@ -9,4 +9,5 @@
     <string name="LL2PType">LL2P Type: </string>
     <string name="LL2PCRC">LL2P CRC: </string>
     <string name="LL2PAddressLabelString">LL2P Address: </string>
+    <string name="LL2PPayloadLabel">LL2P Payload: </string>
 </resources>

@@ -143,23 +143,29 @@
             android:layout_height="wrap_content"
             android:text="@string/IPAddressLabelString"
             android:id="@+id/AdjacencyTableIPAddressLabel"
-            android:layout_alignParentBottom="true"
+            android:layout_above="@+id/AdjacencyTablePayloadTextEdit"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/LL2PAddressLabelString"
             android:id="@+id/AdjacencyTableLL2PAddressLabel"
-            android:layout_above="@+id/AdjacencyTableIPAddressLabel"
+            android:layout_below="@+id/AdjacencyTableListView"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <EditText
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:id="@+id/AdjacencyTableIPAddressTextEdit"
+            android:textSize="14dp"
+            android:hint="#.#.#.#"
             android:layout_alignBottom="@+id/AdjacencyTableIPAddressLabel"
             android:layout_toRightOf="@+id/AdjacencyTableIPAddressLabel"
             android:layout_toEndOf="@+id/AdjacencyTableIPAddressLabel" />
@@ -168,9 +174,11 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:id="@+id/AdjacencyTableLL2PAddressTextEdit"
-            android:layout_above="@+id/AdjacencyTableIPAddressLabel"
-            android:layout_toRightOf="@+id/AdjacencyTableIPAddressLabel"
-            android:layout_toEndOf="@+id/AdjacencyTableIPAddressLabel" />
+            android:textSize="14dp"
+            android:hint="aabbcc"
+            android:layout_above="@+id/AdjacencyTableIPAddressTextEdit"
+            android:layout_toRightOf="@+id/AdjacencyTableLL2PAddressLabel"
+            android:layout_toEndOf="@+id/AdjacencyTableLL2PAddressLabel" />
 
         <Button
             android:layout_width="70dp"
@@ -184,7 +192,7 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:id="@+id/AdjacencyTableListView"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -198,6 +206,27 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/LL2PPayloadLabel"
+            android:id="@+id/AdjacencyTableLL2PPayloadLabel"
+            android:layout_alignBottom="@+id/AdjacencyTablePayloadTextEdit"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/AdjacencyTablePayloadTextEdit"
+            android:textSize="14dp"
+            android:hint="Hello World!"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/AdjacencyTableIPAddressLabel"
+            android:layout_toEndOf="@+id/AdjacencyTableIPAddressLabel" />
     </RelativeLayout>
 
 </RelativeLayout>

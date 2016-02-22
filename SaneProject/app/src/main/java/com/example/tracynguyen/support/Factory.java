@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Network;
 
 import com.example.tracynguyen.network.LL1Daemon;
+import com.example.tracynguyen.network.LL2Daemon;
 import com.example.tracynguyen.network.LL2P;
 
 /**
@@ -15,6 +16,7 @@ public class Factory {
     NetworkConstants networkConstants;
     LL2P LL2PFrame;
     LL1Daemon LL1_Daemon;
+    LL2Daemon LL2_Daemon;
 
 
     public Factory(Activity activity){
@@ -27,13 +29,16 @@ public class Factory {
     private void createAllObjects(){
         uiManager = new UIManager();
         networkConstants = new NetworkConstants(parentActivity);
-        LL2PFrame = new LL2P("010203", "BEEFED", "ABCD", "HelloWorld");
+        LL2PFrame = new LL2P("EEFFDD", "BEEFED", "8001", "HelloWorld");
+        //LL2PFrame = new LL2P();
         LL1_Daemon = new LL1Daemon();
+        LL2_Daemon = new LL2Daemon();
     }
 
     private void getAllObjectReferences(){
         uiManager.getObjectReferences(this);
         LL1_Daemon.getObjectReferences(this);
+        LL2_Daemon.getObjectReferences(this);
     }
 
     public Activity getParentActivity(){
@@ -51,6 +56,8 @@ public class Factory {
     public LL1Daemon getLL1_Daemon(){
         return LL1_Daemon;
     }
+
+    public LL2Daemon getLL2_Daemon() { return LL2_Daemon; }
 
     private void testStuff() {
         uiManager.updateLL2PDisplay(LL2PFrame);

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.tracynguyen.network.AdjacencyTableEntry;
 import com.example.tracynguyen.network.LL1Daemon;
+import com.example.tracynguyen.network.LL2Daemon;
 import com.example.tracynguyen.network.LL2P;
 import com.example.tracynguyen.saneproject.R;
 
@@ -29,6 +30,7 @@ public class UIManager {
     Context context;
     Factory myFactory;
     LL1Daemon LL1_Daemon;
+    LL2Daemon LL2_Daemon;
 
     /*Screen Widgets*/
     private TextView LL2PDestAddressTextView;
@@ -45,6 +47,7 @@ public class UIManager {
     private EditText AdjacencyTableIPAddressTextEdit;
     private List<AdjacencyTableEntry> AdjacencyTableList;
     private ArrayAdapter AdjacencyTableArrayAdapter;
+    private EditText AdjacencyTablePayloadTextEdit;
 
 
     public UIManager(){
@@ -57,6 +60,7 @@ public class UIManager {
         context = parentActivity.getBaseContext();
         LL1_Daemon = factory.getLL1_Daemon();
         AdjacencyTableList = LL1_Daemon.getAdjacencyList();
+        LL2_Daemon = factory.getLL2_Daemon();
         initWidgets();
     }
 
@@ -80,6 +84,7 @@ public class UIManager {
         /*Adjacency Table Widgets*/
         AdjacencyTableLL2PAddressTextEdit = (EditText) parentActivity.findViewById(R.id.AdjacencyTableLL2PAddressTextEdit);
         AdjacencyTableIPAddressTextEdit = (EditText) parentActivity.findViewById(R.id.AdjacencyTableIPAddressTextEdit);
+        AdjacencyTablePayloadTextEdit = (EditText) parentActivity.findViewById(R.id.AdjacencyTablePayloadTextEdit);
         AdjacencyTableListView = (ListView) parentActivity.findViewById(R.id.AdjacencyTableListView);
         AdjacencyTableAddButton = (Button) parentActivity.findViewById(R.id.AdjacencyTableAddButton);
         AdjacencyTableClearButton = (Button) parentActivity.findViewById(R.id.AdjacencyTableClearButton);
@@ -122,6 +127,7 @@ public class UIManager {
         public void onClick(View v) {
             AdjacencyTableLL2PAddressTextEdit.setText("");
             AdjacencyTableIPAddressTextEdit.setText("");
+            AdjacencyTablePayloadTextEdit.setText("");
         }
     };
 
@@ -130,14 +136,20 @@ public class UIManager {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             AdjacencyTableEntry target = AdjacencyTableList.get(position);
 
+            LL2_Daemon.sendLL2PEchoRequest(AdjacencyTablePayloadTextEdit.getText().toString(),
+                    target.getLL2PAddress());
+
+            /*
             // create a fake frame
             LL2P newFrame = new LL2P(target.getLL2PAddressHexString(),
                     NetworkConstants.MY_LL2P_ADDRESS,
-                    "ABCD",
-                    "Hello World");
+                    NetworkConstants.LL2P_ECHO_REQUEST,
+                    AdjacencyTablePayloadTextEdit.getText().toString());
+
 
             // transmit the frame
             LL1_Daemon.sendLL2PFrame(newFrame);
+            */
         }
     };
 

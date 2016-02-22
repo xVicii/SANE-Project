@@ -24,6 +24,7 @@ public class LL1Daemon {
 
     UIManager uiManager;
     LL2P LL2PFrame;
+    LL2Daemon LL2P_Daemon;
 
     // define constant for port number
     private final static int receivePort = 49999;
@@ -36,18 +37,16 @@ public class LL1Daemon {
     public LL1Daemon(){
         MAC_IPAddressTable = new AdjacencyTable(); // set up adjacency table
         openUDPPort(); // open the UDP sockets and initialize them
-        //MAC_IPAddressTable.addEntry(1, "192.168.1.86");
-        //MAC_IPAddressTable.addEntry(314159, "192.168.1.86");
         MAC_IPAddressTable.addEntry(1, "192.168.1.86");
-        MAC_IPAddressTable.addEntry(15663069, "10.30.54.152");
+        //MAC_IPAddressTable.addEntry(15663069, "10.30.54.152");
+        //MAC_IPAddressTable.addEntry(15663069, "172.31.98.228");
         new listenForUDPPacket().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, receiveSocket);
     }
 
     public void getObjectReferences(Factory factory){
         LL2PFrame = factory.getLL2PFrame();
         uiManager = factory.getUiManager();
-        //new listenForUDPPacket().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, receiveSocket);
-
+        LL2P_Daemon = factory.getLL2_Daemon();
     }
 
     public void setAdjacency(Integer LL2PAddress, String IPAddress){
@@ -143,8 +142,9 @@ public class LL1Daemon {
 
         @Override
         protected void onPostExecute(byte[] rxData){
-            String temp = new String(rxData);
-            uiManager.raiseToast(temp);
+            //String temp = new String(rxData);
+            LL2P_Daemon.receiveLL2PFrame(rxData);
+            uiManager.raiseToast(new String(rxData));
             new listenForUDPPacket().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, receiveSocket);
         }
 
