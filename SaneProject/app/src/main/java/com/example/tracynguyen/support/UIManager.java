@@ -17,6 +17,7 @@ import com.example.tracynguyen.network.AdjacencyTableEntry;
 import com.example.tracynguyen.network.LL1Daemon;
 import com.example.tracynguyen.network.LL2Daemon;
 import com.example.tracynguyen.network.LL2P;
+import com.example.tracynguyen.network.Scheduler;
 import com.example.tracynguyen.saneproject.R;
 
 import java.util.Iterator;
@@ -118,6 +119,8 @@ public class UIManager {
         public void onClick(View v) {
             LL1_Daemon.setAdjacency(Integer.valueOf(AdjacencyTableLL2PAddressTextEdit.getText().toString(),16),
                     AdjacencyTableIPAddressTextEdit.getText().toString());
+            // ???
+            LL2_Daemon.sendARPUpdate(Integer.valueOf(AdjacencyTableLL2PAddressTextEdit.getText().toString(),16));
             resetAdjacencyListAdaptor();
         }
     };

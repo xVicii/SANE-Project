@@ -32,6 +32,7 @@ public class NetworkConstants {
     public static final int CRC_LENGTH = 2;
     public static final int LL2P_TYPE_LENGTH = 2;
     public static final String MY_LL2P_ADDRESS = new String("BEEFED");
+    public static final String MY_LL3P_ADDRESS = new String("0D01");
 
     // Type Constants
     public static final String LL3P_PACKET = new String("8001");
@@ -39,6 +40,8 @@ public class NetworkConstants {
     public static final String LRP = new String("8003");
     public static final String LL2P_ECHO_REQUEST = new String("8004");
     public static final String LL2P_ECHO_REPLY = new String("8005");
+    public static final String LL2P_ARP_UPDATE = new String("8006");
+    public static final String LL2P_ARP_REPLY = new String("8007");
 
     public NetworkConstants (Activity parentActivity){
         //IP_ADDRESS = this.getIPAddress(true);

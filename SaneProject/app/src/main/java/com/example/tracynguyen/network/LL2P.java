@@ -1,7 +1,6 @@
 package com.example.tracynguyen.network;
 
 import com.example.tracynguyen.support.NetworkConstants;
-import com.example.tracynguyen.support.UIManager;
 import com.example.tracynguyen.support.Utilities;
 
 /**
@@ -13,7 +12,6 @@ public class LL2P {
     private Integer typeField;
     private byte[] payload;
     private CRC CRC16;
-    UIManager uiManager;
 
 
     public LL2P(String destAddress, String srcAddress, String type, String payload){
@@ -54,7 +52,7 @@ public class LL2P {
     }
 
     public void setTypeField(String inputValue){
-        typeField = Integer.valueOf(inputValue, 16); // if statements for LL3P, ARP, LRP?
+        typeField = Integer.valueOf(inputValue, 16);
     }
 
     public void setCRCField(String inputValue){
@@ -109,22 +107,23 @@ public class LL2P {
     }
 
     public String toString(){
-        return getDestMACAddressHexString() + getTypeFieldHexString()
+        return getDestMACAddressHexString() + getSrcMACAddressHexString() + getTypeFieldHexString()
                 + getPayloadHexString() + getCRCHexString();
     }
 
 
-    /* THESE METHODS RETURNS THE VALUE AS A PRIMITIVE INT TYPE */
+    /* THESE METHODS RETURNS THE VALUE AS A PRIMITIVE INT TYPE*/
+    /* Should I return Integer values for simplicity? */
 
-    public int getSrcMACAddress(){ // does this function automatically convert Integer to int?
+    public Integer getSrcMACAddress(){
         return srcMACAddress;
     }
 
-    public int getDestMACAddress(){
+    public Integer getDestMACAddress(){
         return destMACAddress;
     }
 
-    public int getTypeField(){
+    public Integer getTypeField(){
         return typeField;
     }
 
