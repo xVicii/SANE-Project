@@ -94,9 +94,8 @@ public class ARPTable implements Runnable{
 
         while (tableIterator.hasNext() && !found){
             tmp = tableIterator.next();
-            if (tmp.getLL3PAddress().equals(LL2PAddress)){
+            if (tmp.getLL2PAddress().equals(LL2PAddress)){
                 found = true;
-                table.remove(tmp);
             }
         }
 
@@ -112,7 +111,6 @@ public class ARPTable implements Runnable{
             tmp = tableIterator.next();
             if (tmp.getLL3PAddress().equals(LL3PAddress)){
                 found = true;
-                table.remove(tmp);
             }
         }
 
@@ -127,7 +125,6 @@ public class ARPTable implements Runnable{
             tmp = tableIterator.next();
             if (tmp.getCurrentAgeInSeconds() > 10){
                 table.remove(tmp);
-                Log.i(NetworkConstants.TAG, "Entry expired. Removing LL2P entry: " + tmp.getLL2PAddress().toString());
             }
         }
     }
@@ -135,15 +132,18 @@ public class ARPTable implements Runnable{
     public void addOrUpdate(Integer LL2PAddress, Integer LL3PAddress){
         Iterator<ARPTableEntry> tableIterator = table.iterator();
         ARPTableEntry tmp = null;
+        boolean found = false;
 
         while (tableIterator.hasNext()){
             tmp = tableIterator.next();
             if (tmp.getLL2PAddress().equals(LL2PAddress) && tmp.getLL3PAddress().equals(LL3PAddress)){
                 tmp.updateTime();
+                found = true;
             }
-            else{
-                addEntry(LL2PAddress, LL3PAddress);
-            }
+        }
+
+        if (!found){
+            addEntry(LL2PAddress, LL3PAddress);
         }
     }
 

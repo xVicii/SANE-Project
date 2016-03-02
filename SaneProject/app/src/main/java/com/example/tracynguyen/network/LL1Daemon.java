@@ -38,8 +38,9 @@ public class LL1Daemon {
         MAC_IPAddressTable = new AdjacencyTable(); // set up adjacency table
         openUDPPort(); // open the UDP sockets and initialize them
         MAC_IPAddressTable.addEntry(1, "192.168.1.86");
-        //MAC_IPAddressTable.addEntry(15663069, "10.30.54.152");
+        MAC_IPAddressTable.addEntry(15663069, "10.30.54.152");
         //MAC_IPAddressTable.addEntry(15663069, "172.31.98.228");
+        //MAC_IPAddressTable.addEntry(15663069, "172.16.1.59");
         new listenForUDPPacket().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, receiveSocket);
     }
 
