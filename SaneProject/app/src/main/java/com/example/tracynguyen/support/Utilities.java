@@ -46,4 +46,8 @@ public class Utilities {
     public static byte[] stringToByte(String string){
         return Base64.encode(string.getBytes(), Base64.DEFAULT);
     }
+
+    public static void getNetworkFromInteger(Integer integer){
+
+    }
 }
