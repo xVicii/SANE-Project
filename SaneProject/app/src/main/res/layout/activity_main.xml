@@ -229,4 +229,54 @@
             android:layout_toEndOf="@+id/AdjacencyTableIPAddressLabel" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/view"
+        android:layout_toRightOf="@+id/AdjacencyTableLayout"
+        android:layout_toEndOf="@+id/AdjacencyTableLayout"
+        android:id="@+id/RoutingAndForwardingTableLayout"
+        android:background="#28a1f7">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/RoutingTableLabel"
+            android:id="@+id/RoutingTableTextLabel"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="16dp" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:id="@+id/RoutingTableListView"
+            android:layout_below="@+id/RoutingTableTextLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ForwardingTableLabel"
+            android:id="@+id/ForwardingTableTextLabel"
+            android:layout_below="@+id/RoutingTableListView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="16dp" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ForwardingTableListView"
+            android:layout_below="@+id/ForwardingTableTextLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
 </RelativeLayout>

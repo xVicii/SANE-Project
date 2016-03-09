@@ -9,6 +9,7 @@ import com.example.tracynguyen.network.LL1Daemon;
 import com.example.tracynguyen.network.LL2Daemon;
 import com.example.tracynguyen.network.LL2P;
 import com.example.tracynguyen.network.Scheduler;
+import com.example.tracynguyen.network.TestTables;
 
 /**
  * Created by tracy.nguyen on 1/21/2016.
@@ -23,7 +24,7 @@ public class Factory {
     ARPTable arpTable;
     Scheduler scheduler;
     ARPDaemon arpDaemon;
-
+    TestTables testTables;
 
     public Factory(Activity activity){
         parentActivity = activity;
@@ -41,6 +42,7 @@ public class Factory {
         arpDaemon = new ARPDaemon(); // create new ARP table
         arpTable = arpDaemon.getArpTable();
         scheduler = new Scheduler();
+        testTables = new TestTables();
     }
 
     private void getAllObjectReferences(){
@@ -49,6 +51,7 @@ public class Factory {
         LL2_Daemon.getObjectReferences(this);
         arpDaemon.getObjectReferences(this);
         scheduler.getObjectReferences(this);
+        testTables.getObjectReferences(this);
     }
 
     public Activity getParentActivity(){
@@ -73,7 +76,13 @@ public class Factory {
         return arpDaemon;
     }
 
+    public TestTables getTestTables() {
+        return testTables;
+    }
     private void testStuff() {
         uiManager.updateLL2PDisplay(LL2PFrame);
+        testTables.loadTestRoutes();
+        //testTables.removeTestRoutes();
+        testTables.checkExpiration();
     }
 }

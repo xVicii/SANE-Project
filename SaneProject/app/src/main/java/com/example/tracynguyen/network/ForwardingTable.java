@@ -2,6 +2,7 @@ package com.example.tracynguyen.network;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by tracy.nguyen on 3/3/2016.
@@ -49,8 +50,20 @@ public class ForwardingTable extends RouteTable{
         return nextHop;
     }
 
-    // TODO
-    public void getFIBExcludingLL3PAddress(Integer ll3PAddress){
+    public List<RouteTableEntry> getFIBExcludingLL3PAddress(Integer ll3PAddress){
+        List<RouteTableEntry> list = new ArrayList<RouteTableEntry>();
+        Iterator<RouteTableEntry> tableIterator = table.iterator();
+        RouteTableEntry tmp = null;
 
+        while (tableIterator.hasNext()){
+            tmp = tableIterator.next();
+
+            // build a list that contains routes excluding the specified address
+            if (!tmp.getSourceLL3P().equals(ll3PAddress)){
+                list.add(tmp);
+            }
+        }
+
+        return list;
     }
 }

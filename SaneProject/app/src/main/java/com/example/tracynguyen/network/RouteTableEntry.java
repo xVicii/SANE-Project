@@ -1,6 +1,7 @@
 package com.example.tracynguyen.network;
 
 import com.example.tracynguyen.support.Factory;
+import com.example.tracynguyen.support.Utilities;
 
 import java.util.Calendar;
 
@@ -18,6 +19,7 @@ public class RouteTableEntry implements Comparable<RouteTableEntry>{
         SourceLL3P = sourceLL3P;
         netDistPair = new NetworkDistancePair(network, distance);
         this.nextHop = nextHop;
+        updateLastTimeTouched();
     }
 
     public void getObjectReferences(Factory factory){
@@ -58,8 +60,7 @@ public class RouteTableEntry implements Comparable<RouteTableEntry>{
 
     // TODO
     public int compareTo(RouteTableEntry newEntry){
-        return this.netDistPair.getNetworkNumber().compareTo(
-                newEntry.getNetDistPair().getNetworkNumber());
+        return this.getSourceLL3P().compareTo(newEntry.getSourceLL3P());
     }
 
     public void updateLastTimeTouched(){
@@ -80,11 +81,11 @@ public class RouteTableEntry implements Comparable<RouteTableEntry>{
         return Calendar.getInstance().getTimeInMillis()/1000 - lastTimeTouched;
     }
 
-    // TODO
     public String toString(){
-        return Integer.toHexString(getSourceLL3P())
-                + "... next hop: "
-                + Integer.toHexString(getNextHop());
+        return "Source LL3P: 0x"
+                + Utilities.padHexString(Integer.toHexString(getSourceLL3P()), 2)
+                + "... Next Hop: "
+                + Utilities.padHexString(Integer.toHexString(getNextHop()), 2);
     }
 
 }

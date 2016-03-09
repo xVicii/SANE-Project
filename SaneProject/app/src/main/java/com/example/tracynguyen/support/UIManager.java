@@ -17,9 +17,13 @@ import com.example.tracynguyen.network.AdjacencyTableEntry;
 import com.example.tracynguyen.network.LL1Daemon;
 import com.example.tracynguyen.network.LL2Daemon;
 import com.example.tracynguyen.network.LL2P;
+import com.example.tracynguyen.network.RouteTable;
+import com.example.tracynguyen.network.RouteTableEntry;
 import com.example.tracynguyen.network.Scheduler;
+import com.example.tracynguyen.network.TestTables;
 import com.example.tracynguyen.saneproject.R;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,6 +36,7 @@ public class UIManager {
     Factory myFactory;
     LL1Daemon LL1_Daemon;
     LL2Daemon LL2_Daemon;
+    TestTables testTables;
 
     /*Screen Widgets*/
     private TextView LL2PDestAddressTextView;
@@ -50,6 +55,13 @@ public class UIManager {
     private ArrayAdapter AdjacencyTableArrayAdapter;
     private EditText AdjacencyTablePayloadTextEdit;
 
+    /*Routing and Forwarding Table Widgets*/
+    private ListView RoutingTableListView;
+    private List<RouteTableEntry> RoutingTableList;
+    private ArrayAdapter RoutingTableArrayAdapter;
+    private ListView ForwardingTableListView;
+    private List<RouteTableEntry> ForwardingTableList;
+    private ArrayAdapter ForwardingTableArrayAdapter;
 
     public UIManager(){
 
@@ -62,6 +74,9 @@ public class UIManager {
         LL1_Daemon = factory.getLL1_Daemon();
         AdjacencyTableList = LL1_Daemon.getAdjacencyList();
         LL2_Daemon = factory.getLL2_Daemon();
+        testTables = factory.getTestTables();
+        RoutingTableList = testTables.getRouteTableList();
+        ForwardingTableList = testTables.getForwardingTableList();
         initWidgets();
     }
 
@@ -103,6 +118,26 @@ public class UIManager {
         resetAdjacencyListAdaptor();
         // connects adapter with the widget on the screen
         AdjacencyTableListView.setAdapter(AdjacencyTableArrayAdapter);
+
+        /*Routing and Forwarding Table Widgets*/
+        RoutingTableListView = (ListView) parentActivity.findViewById(R.id.RoutingTableListView);
+        ForwardingTableListView = (ListView) parentActivity.findViewById(R.id.ForwardingTableListView);
+
+        /*Routing Table Connection*/
+        RoutingTableArrayAdapter = new ArrayAdapter<RouteTableEntry>(parentActivity,
+                android.R.layout.simple_list_item_1,
+                RoutingTableList);
+
+        resetRoutingTableListAdapter();
+        RoutingTableListView.setAdapter(RoutingTableArrayAdapter);
+
+        /*Forwarding Table Connection*/
+        ForwardingTableArrayAdapter = new ArrayAdapter<RouteTableEntry>(parentActivity,
+                android.R.layout.simple_list_item_1,
+                ForwardingTableList);
+
+        resetForwardingTableListAdapter();
+        ForwardingTableListView.setAdapter(ForwardingTableArrayAdapter);
 
     }
 
@@ -178,5 +213,25 @@ public class UIManager {
         Iterator<AdjacencyTableEntry> listIterator = AdjacencyTableList.iterator();
         while (listIterator.hasNext())
             AdjacencyTableArrayAdapter.add(listIterator.next());
+    }
+
+    public void resetRoutingTableListAdapter(){
+        RoutingTableList = testTables.getRouteTableList();
+
+        RoutingTableArrayAdapter.clear();
+
+        Iterator<RouteTableEntry> listIterator = RoutingTableList.iterator();
+        while (listIterator.hasNext())
+            RoutingTableArrayAdapter.add(listIterator.next());
+    }
+
+    public void resetForwardingTableListAdapter(){
+        ForwardingTableList = testTables.getForwardingTableList();
+
+        ForwardingTableArrayAdapter.clear();
+
+        Iterator<RouteTableEntry> listIterator = ForwardingTableList.iterator();
+        while (listIterator.hasNext())
+            ForwardingTableArrayAdapter.add(listIterator.next());
     }
 }

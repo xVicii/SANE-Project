@@ -26,7 +26,7 @@ public class Scheduler {
     }
 
     private void createThreads(){
-        threadPoolManager.scheduleAtFixedRate(arpTable, 10, 30, TimeUnit.SECONDS);
+        threadPoolManager.scheduleAtFixedRate(arpTable, 10, 80, TimeUnit.SECONDS);
     }
 
 }

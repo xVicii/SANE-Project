@@ -44,7 +44,7 @@ public class RouteTable {
 
         while (tableIterator.hasNext()){
             tmp = tableIterator.next();
-            if (tmp.getCurrentAgeInSeconds() > 10){
+            if (tmp.getCurrentAgeInSeconds() > 30){
                 table.remove(tmp);
             }
         }
