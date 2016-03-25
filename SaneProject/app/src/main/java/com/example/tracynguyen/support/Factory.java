@@ -5,9 +5,12 @@ import android.net.Network;
 
 import com.example.tracynguyen.network.ARPDaemon;
 import com.example.tracynguyen.network.ARPTable;
+import com.example.tracynguyen.network.ForwardingTable;
 import com.example.tracynguyen.network.LL1Daemon;
 import com.example.tracynguyen.network.LL2Daemon;
 import com.example.tracynguyen.network.LL2P;
+import com.example.tracynguyen.network.LRPDaemon;
+import com.example.tracynguyen.network.RouteTable;
 import com.example.tracynguyen.network.Scheduler;
 import com.example.tracynguyen.network.TestTables;
 
@@ -24,13 +27,18 @@ public class Factory {
     ARPTable arpTable;
     Scheduler scheduler;
     ARPDaemon arpDaemon;
+    RouteTable routeTable;
+    ForwardingTable forwardingTable;
+    LRPDaemon lrpDaemon;
     TestTables testTables;
 
     public Factory(Activity activity){
         parentActivity = activity;
         createAllObjects();
         getAllObjectReferences();
+        uiManager.initWidgets();
         testStuff();
+
     }
 
     private void createAllObjects(){
@@ -39,10 +47,14 @@ public class Factory {
         LL2PFrame = new LL2P("EEFFDD", "BEEFED", "8001", "HelloWorld");
         LL1_Daemon = new LL1Daemon();
         LL2_Daemon = new LL2Daemon();
-        arpDaemon = new ARPDaemon(); // create new ARP table
+        arpDaemon = new ARPDaemon();
         arpTable = arpDaemon.getArpTable();
         scheduler = new Scheduler();
-        testTables = new TestTables();
+        lrpDaemon = new LRPDaemon();
+        routeTable = lrpDaemon.getRouteTable();
+        forwardingTable = lrpDaemon.getFIB();
+
+        //testTables = new TestTables();
     }
 
     private void getAllObjectReferences(){
@@ -51,7 +63,9 @@ public class Factory {
         LL2_Daemon.getObjectReferences(this);
         arpDaemon.getObjectReferences(this);
         scheduler.getObjectReferences(this);
-        testTables.getObjectReferences(this);
+        lrpDaemon.getObjectReferences(this);
+        //testTables.getObjectReferences(this);
+
     }
 
     public Activity getParentActivity(){
@@ -76,13 +90,24 @@ public class Factory {
         return arpDaemon;
     }
 
+    public ARPTable getArpTable() { return arpTable; }
+
+    public RouteTable getRouteTable() { return routeTable; }
+
+    public ForwardingTable getForwardingTable() { return forwardingTable; }
+
+    public LRPDaemon getLrpDaemon() {
+        return lrpDaemon;
+    }
+
     public TestTables getTestTables() {
         return testTables;
     }
+
     private void testStuff() {
         uiManager.updateLL2PDisplay(LL2PFrame);
-        testTables.loadTestRoutes();
+        //testTables.loadTestRoutes();
         //testTables.removeTestRoutes();
-        testTables.checkExpiration();
+        //testTables.checkExpiration();
     }
 }

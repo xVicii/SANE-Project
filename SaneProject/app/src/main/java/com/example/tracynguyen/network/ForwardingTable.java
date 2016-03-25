@@ -27,9 +27,9 @@ public class ForwardingTable extends RouteTable{
         }
     }
 
-    public void addRouteList(ArrayList<RouteTableEntry> arrayList){
-        for (int i = 0; i < arrayList.size(); i++){
-            addFibEntry(arrayList.get(i));
+    public void addRouteList(List<RouteTableEntry> routeList){
+        for (int i = 0; i < routeList.size(); i++){
+            addFibEntry(routeList.get(i));
         }
     }
 

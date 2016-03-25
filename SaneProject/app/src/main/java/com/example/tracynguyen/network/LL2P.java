@@ -56,8 +56,6 @@ public class LL2P {
     }
 
     public void setCRCField(String inputValue){
-        //CRC16 = Integer.valueOf(inputValue, 16);
-        //CRC16.setCRC(Long.parseLong(inputValue, 16));
         CRC16.setCRC(Integer.valueOf(inputValue,16));
     }
 

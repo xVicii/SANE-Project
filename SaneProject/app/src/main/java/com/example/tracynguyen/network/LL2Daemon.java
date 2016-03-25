@@ -14,6 +14,7 @@ public class LL2Daemon {
     LL1Daemon ll1Daemon;
     LL2P LL2PFrame;
     ARPDaemon arpDaemon;
+    private LRPDaemon lrpDaemon;
 
     private String LL2PAddress;
     private Integer LL2PIntegerAddress;
@@ -27,6 +28,7 @@ public class LL2Daemon {
         uiManager = factory.getUiManager();
         ll1Daemon = factory.getLL1_Daemon();
         arpDaemon = factory.getArpDaemon();
+        lrpDaemon = factory.getLrpDaemon();
     }
 
     public void setLocalLL2PAddress(Integer LocalLL2PAddress){
@@ -86,6 +88,7 @@ public class LL2Daemon {
                 uiManager.raiseToast("Received type: 0x8002 ARP update");
             }
             else if (typeField.equals(NetworkConstants.LRP)){
+                lrpDaemon.receiveNewLRP(receivedFrame.getPayload(), receivedFrame.getSrcMACAddress());
                 uiManager.raiseToast("Received type: 0x8003 LRP");
             }
             else if (typeField.equals(NetworkConstants.LL2P_ECHO_REQUEST)){

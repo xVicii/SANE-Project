@@ -43,6 +43,12 @@ public class NetworkConstants {
     public static final String LL2P_ARP_UPDATE = new String("8006");
     public static final String LL2P_ARP_REPLY = new String("8007");
 
+    // LRP Constants
+    public static final int LRP_BASE = 6;
+    public static final int LRP_NETWORK_LENGTH = 2;
+    public static final int LRP_DISTANCE_LENGTH = 2;
+    public static final int LRP_NETDISTPAIR_LENGTH = 4;
+
     public NetworkConstants (Activity parentActivity){
         //IP_ADDRESS = this.getIPAddress(true);
         IP_ADDRESS = getLocalIpAddress(); // call the local method to get the IP address of this device.

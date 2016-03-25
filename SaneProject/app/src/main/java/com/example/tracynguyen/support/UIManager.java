@@ -17,6 +17,7 @@ import com.example.tracynguyen.network.AdjacencyTableEntry;
 import com.example.tracynguyen.network.LL1Daemon;
 import com.example.tracynguyen.network.LL2Daemon;
 import com.example.tracynguyen.network.LL2P;
+import com.example.tracynguyen.network.LRPDaemon;
 import com.example.tracynguyen.network.RouteTable;
 import com.example.tracynguyen.network.RouteTableEntry;
 import com.example.tracynguyen.network.Scheduler;
@@ -36,6 +37,7 @@ public class UIManager {
     Factory myFactory;
     LL1Daemon LL1_Daemon;
     LL2Daemon LL2_Daemon;
+    LRPDaemon lrpDaemon;
     TestTables testTables;
 
     /*Screen Widgets*/
@@ -74,10 +76,12 @@ public class UIManager {
         LL1_Daemon = factory.getLL1_Daemon();
         AdjacencyTableList = LL1_Daemon.getAdjacencyList();
         LL2_Daemon = factory.getLL2_Daemon();
-        testTables = factory.getTestTables();
-        RoutingTableList = testTables.getRouteTableList();
-        ForwardingTableList = testTables.getForwardingTableList();
-        initWidgets();
+        //testTables = factory.getTestTables();
+
+        lrpDaemon = factory.getLrpDaemon();
+        RoutingTableList = lrpDaemon.getRoutingTableAsList(); // TODO WHY???
+        ForwardingTableList = lrpDaemon.getForwardingTableAsList(); // TODO WHY???
+        //initWidgets();
     }
 
     public void raiseToast(String message, int length){
@@ -88,7 +92,7 @@ public class UIManager {
         raiseToast(message, Toast.LENGTH_SHORT);
     }
 
-    private void initWidgets(){
+    public void initWidgets(){
 
         /*LL2P Widgets*/
         LL2PDestAddressTextView = (TextView) parentActivity.findViewById(R.id.LL2PDestAddressTextView);
@@ -216,7 +220,7 @@ public class UIManager {
     }
 
     public void resetRoutingTableListAdapter(){
-        RoutingTableList = testTables.getRouteTableList();
+        RoutingTableList = lrpDaemon.getRoutingTableAsList();
 
         RoutingTableArrayAdapter.clear();
 
@@ -226,7 +230,7 @@ public class UIManager {
     }
 
     public void resetForwardingTableListAdapter(){
-        ForwardingTableList = testTables.getForwardingTableList();
+        ForwardingTableList = lrpDaemon.getForwardingTableAsList();
 
         ForwardingTableArrayAdapter.clear();
 
