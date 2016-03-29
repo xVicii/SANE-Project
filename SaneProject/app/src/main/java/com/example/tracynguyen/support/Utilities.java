@@ -47,7 +47,10 @@ public class Utilities {
         return Base64.encode(string.getBytes(), Base64.DEFAULT);
     }
 
-    public static void getNetworkFromInteger(Integer integer){
-
+    public static Integer getNetworkFromInteger(Integer integer){
+        String hexString = Integer.toHexString(integer);
+        String networkString = hexString.substring(0, 2);
+        Integer network = Integer.valueOf(networkString, 16);
+        return network;
     }
 }

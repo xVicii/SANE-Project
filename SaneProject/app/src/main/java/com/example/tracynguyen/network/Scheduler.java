@@ -1,6 +1,9 @@
 package com.example.tracynguyen.network;
 
+import android.net.Network;
+
 import com.example.tracynguyen.support.Factory;
+import com.example.tracynguyen.support.NetworkConstants;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -11,6 +14,8 @@ import java.util.concurrent.TimeUnit;
 public class Scheduler {
     ARPTable arpTable;
     ARPDaemon arpDaemon;
+    RouteTable routeTable;
+    LRPDaemon lrpDaemon;
     ScheduledThreadPoolExecutor threadPoolManager;
 
     public Scheduler(){
@@ -22,11 +27,29 @@ public class Scheduler {
     public void getObjectReferences(Factory factory){
         arpDaemon = factory.getArpDaemon();
         arpTable = arpDaemon.getArpTable();
+        routeTable = factory.getRouteTable();
+        lrpDaemon = factory.getLrpDaemon();
         createThreads();
     }
 
     private void createThreads(){
         threadPoolManager.scheduleAtFixedRate(arpTable, 10, 80, TimeUnit.SECONDS);
+
+        /*
+        threadPoolManager.scheduleAtFixedRate(
+                routeTable,
+                NetworkConstants.ROUTER_BOOT_TIME,
+                NetworkConstants.ROUTE_UPDATE_VALUE,
+                TimeUnit.SECONDS
+        );
+
+        threadPoolManager.scheduleAtFixedRate(
+                lrpDaemon,
+                NetworkConstants.ROUTER_BOOT_TIME,
+                NetworkConstants.ROUTE_UPDATE_VALUE,
+                TimeUnit.SECONDS
+        );
+        */
     }
 
 }

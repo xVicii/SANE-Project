@@ -3,14 +3,16 @@ package com.example.tracynguyen.network;
 import android.app.Activity;
 
 import com.example.tracynguyen.support.Factory;
+import com.example.tracynguyen.support.NetworkConstants;
 import com.example.tracynguyen.support.UIManager;
+import com.example.tracynguyen.support.Utilities;
 
 import java.util.List;
 
 /**
  * Created by tracy.nguyen on 3/18/2016.
  */
-public class LRPDaemon {
+public class LRPDaemon implements Runnable{
     private ARPTable arpTable;
     private RouteTable routeTable;
     private ForwardingTable forwardingTable;
@@ -72,5 +74,38 @@ public class LRPDaemon {
         // Update tables on UI
         uiManager.resetRoutingTableListAdapter();
         uiManager.resetForwardingTableListAdapter();
+    }
+
+    @Override
+    public void run(){
+        List<ARPTableEntry> arpTableList = arpTable.getARPTableAsList();
+
+        // For every entry in the ARP table, add a RouteTableEntry to the routing table
+        for(ARPTableEntry entry : arpTableList){
+            routeTable.addEntry(
+                    Integer.valueOf(NetworkConstants.MY_LL3P_ADDRESS, 16),
+                    Utilities.getNetworkFromInteger(entry.getLL3PAddress()),
+                    1,
+                    entry.getLL3PAddress());
+        }
+
+        // Update the forwarding table
+        forwardingTable.addRouteList(routeTable.getRouteList());
+
+        // For each entry in the ARP table, build an LRP Packet
+        for(ARPTableEntry entry: arpTableList){
+            LRP lrpPacket = new LRP(
+                    Integer.valueOf(NetworkConstants.MY_LL3P_ADDRESS, 16),
+                    forwardingTable,
+                    entry.getLL3PAddress()
+            );
+
+            ll2Daemon.sendLL2PFrame(
+                    lrpPacket.getBytes(),
+                    entry.getLL2PAddress(),
+                    Integer.valueOf(NetworkConstants.LRP, 16)
+            );
+
+        }
     }
 }

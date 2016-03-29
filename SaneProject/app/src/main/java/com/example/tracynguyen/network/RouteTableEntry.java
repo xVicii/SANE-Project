@@ -60,7 +60,15 @@ public class RouteTableEntry implements Comparable<RouteTableEntry>{
 
     // TODO
     public int compareTo(RouteTableEntry newEntry){
-        return this.getSourceLL3P().compareTo(newEntry.getSourceLL3P());
+        //return this.getSourceLL3P().compareTo(newEntry.getSourceLL3P());
+        if(this.netDistPair.getNetworkNumber().equals(newEntry.getNetDistPair().getNetworkNumber()))
+
+            if(this.netDistPair.getDistance().equals(newEntry.getNetDistPair().getDistance()))
+                return this.getSourceLL3P().compareTo(newEntry.getSourceLL3P());
+            else
+                return this.netDistPair.getDistance().compareTo(newEntry.getNetDistPair().getDistance());
+        else
+            return this.netDistPair.getNetworkNumber().compareTo(newEntry.getNetDistPair().getNetworkNumber());
     }
 
     public void updateLastTimeTouched(){
@@ -81,9 +89,29 @@ public class RouteTableEntry implements Comparable<RouteTableEntry>{
         return Calendar.getInstance().getTimeInMillis()/1000 - lastTimeTouched;
     }
 
+    /*public boolean equals(Object o) {
+        if(! (o instanceof RouteTableEntry))
+            return false;
+        RouteTableEntry entry = (RouteTableEntry)o;
+
+        //compare Network
+        if(!this.netDistPair.getNetworkNumber().equals(entry.netDistPair.getNetworkNumber()))
+            return false;
+        //compare more things
+
+
+
+        return true;
+
+    }*/
+
     public String toString(){
         return "Source LL3P: 0x"
                 + Utilities.padHexString(Integer.toHexString(getSourceLL3P()), 2)
+                + "... Network: "
+                + Utilities.padHexString(Integer.toHexString(getNetDistPair().getNetworkNumber()), 1)
+                + "... Distance: "
+                + Utilities.padHexString(Integer.toHexString(getNetDistPair().getDistance()), 1)
                 + "... Next Hop: "
                 + Utilities.padHexString(Integer.toHexString(getNextHop()), 2);
     }

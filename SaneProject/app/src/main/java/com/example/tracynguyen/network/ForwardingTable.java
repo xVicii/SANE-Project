@@ -15,21 +15,33 @@ public class ForwardingTable extends RouteTable{
     public void addFibEntry(RouteTableEntry newEntry){
         Iterator<RouteTableEntry> tableIterator = table.iterator();
         RouteTableEntry tmp = null;
+        boolean found = false;
 
-        while (tableIterator.hasNext()){
+        while (tableIterator.hasNext() && !found){
             tmp = tableIterator.next();
 
             // only add the new route if it's a closer route than the existing one in the table
-            if (tmp.equals(newEntry) &&
-                    (newEntry.getNetDistPair().getDistance() < tmp.getNetDistPair().getDistance())){
+            if (tmp.getNetDistPair().getNetworkNumber().equals(newEntry.getNetDistPair().getNetworkNumber())){
+                table.remove(tmp);
                 table.add(newEntry);
+                found = true;
             }
         }
+        if (!found){
+            table.add(newEntry);
+        }
+
     }
 
     public void addRouteList(List<RouteTableEntry> routeList){
+        Integer tmpNetwork = routeList.get(0).getNetDistPair().getNetworkNumber();
+        addFibEntry(routeList.get(0));
+
         for (int i = 0; i < routeList.size(); i++){
-            addFibEntry(routeList.get(i));
+            if (!routeList.get(i).getNetDistPair().getNetworkNumber().equals(tmpNetwork)){
+                tmpNetwork = routeList.get(i).getNetDistPair().getNetworkNumber();
+                addFibEntry(routeList.get(i));
+            }
         }
     }
 

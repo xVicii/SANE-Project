@@ -49,6 +49,10 @@ public class NetworkConstants {
     public static final int LRP_DISTANCE_LENGTH = 2;
     public static final int LRP_NETDISTPAIR_LENGTH = 4;
 
+    // Scheduler Constants
+    public static final int ROUTER_BOOT_TIME = 10;
+    public static final int ROUTE_UPDATE_VALUE = 10;
+
     public NetworkConstants (Activity parentActivity){
         //IP_ADDRESS = this.getIPAddress(true);
         IP_ADDRESS = getLocalIpAddress(); // call the local method to get the IP address of this device.

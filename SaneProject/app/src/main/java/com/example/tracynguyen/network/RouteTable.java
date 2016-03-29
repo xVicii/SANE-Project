@@ -1,7 +1,9 @@
 package com.example.tracynguyen.network;
 
 import android.app.Activity;
+import android.widget.Toast;
 
+import com.example.tracynguyen.support.NetworkConstants;
 import com.example.tracynguyen.support.UIManager;
 
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ import java.util.TreeSet;
 /**
  * Created by tracy.nguyen on 3/3/2016.
  */
-public class RouteTable {
+public class RouteTable implements Runnable{
     Set<RouteTableEntry> table;
     UIManager uiManager;
     Activity activity;
@@ -30,11 +32,22 @@ public class RouteTable {
 
     public void addEntry(Integer sourceLL3P, Integer network, Integer distance, Integer nextHop){
         RouteTableEntry newEntry = new RouteTableEntry(sourceLL3P, network, distance, nextHop);
-        try {
-            table.add(newEntry);
-        }
-        catch (Exception e){
 
+        Iterator<RouteTableEntry> tableIterator = table.iterator();
+        RouteTableEntry tmp = null;
+        boolean found = false;
+
+        while (tableIterator.hasNext() && !found){
+            tmp = tableIterator.next();
+            if (tmp.getSourceLL3P().equals(sourceLL3P) && tmp.getNetDistPair().getNetworkNumber().equals(network)){
+                table.remove(tmp);
+                table.add(newEntry);
+                found = true;
+            }
+        }
+
+        if(!found){
+            table.add(newEntry);
         }
     }
 
@@ -44,7 +57,7 @@ public class RouteTable {
 
         while (tableIterator.hasNext()){
             tmp = tableIterator.next();
-            if (tmp.getCurrentAgeInSeconds() > 30){
+            if (tmp.getCurrentAgeInSeconds() > NetworkConstants.ROUTE_UPDATE_VALUE * 3){
                 table.remove(tmp);
             }
         }
@@ -64,5 +77,16 @@ public class RouteTable {
                 table.remove(tmp);
             }
         }
+    }
+
+    @Override
+    public void run() {
+        this.removeOldRoutes();
+
+        activity.runOnUiThread(new Runnable(){
+              public void run(){
+                  uiManager.resetRoutingTableListAdapter();
+              }
+           });
     }
 }
