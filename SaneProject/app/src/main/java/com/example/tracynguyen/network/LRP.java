@@ -28,7 +28,7 @@ public class LRP {
                Integer LL3PAddressThatWillReceiveThisLRPPacket){
 
         setSourceAddress(myLL3PAddress);
-        // TODO what to set sending sequence #?
+        setSequenceNumber(0);
         setRouteCount(myForwardingTable.getFIBExcludingLL3PAddress(
                         LL3PAddressThatWillReceiveThisLRPPacket).size());
         setRoutes(myForwardingTable, LL3PAddressThatWillReceiveThisLRPPacket);
@@ -107,14 +107,14 @@ public class LRP {
 
     public String toString(){
 
-        String routeList = new String();
+        String routeList = "";
         for (NetworkDistancePair pair : pairList){
-            routeList += Integer.toHexString(pair.getNetworkNumber())
-                    + Integer.toHexString(pair.getDistance());
+            routeList += Utilities.padHexString(Integer.toHexString(pair.getNetworkNumber()), 1)
+                    + Utilities.padHexString(Integer.toHexString(pair.getDistance()), 1);
         }
 
         String lrpPacket =
-                Integer.toHexString(sourceAddress)
+                Utilities.padHexString(Integer.toHexString(sourceAddress), 2)
                         + Integer.toHexString(sequenceNumber)
                         + Integer.toHexString(routeCount)
                         + routeList;

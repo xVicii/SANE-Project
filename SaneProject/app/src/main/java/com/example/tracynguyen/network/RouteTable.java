@@ -52,14 +52,21 @@ public class RouteTable implements Runnable{
     }
 
     public void removeOldRoutes(){
-        Iterator<RouteTableEntry> tableIterator = table.iterator();
-        RouteTableEntry tmp = null;
+        boolean notDone = true;
 
-        while (tableIterator.hasNext()){
-            tmp = tableIterator.next();
-            if (tmp.getCurrentAgeInSeconds() > NetworkConstants.ROUTE_UPDATE_VALUE * 3){
-                table.remove(tmp);
+        while(notDone) {
+            Iterator<RouteTableEntry> tableIterator = table.iterator();
+            RouteTableEntry tmp = null;
+            boolean found = false;
+
+            while (tableIterator.hasNext() && !found) {
+                tmp = tableIterator.next();
+                if (tmp.getCurrentAgeInSeconds() > NetworkConstants.ROUTE_UPDATE_VALUE * 3) {
+                    table.remove(tmp);
+                    found = true;
+                }
             }
+            notDone = found;
         }
     }
 
@@ -86,6 +93,7 @@ public class RouteTable implements Runnable{
         activity.runOnUiThread(new Runnable(){
               public void run(){
                   uiManager.resetRoutingTableListAdapter();
+                  uiManager.resetForwardingTableListAdapter();
               }
            });
     }

@@ -48,7 +48,7 @@ public class Utilities {
     }
 
     public static Integer getNetworkFromInteger(Integer integer){
-        String hexString = Integer.toHexString(integer);
+        String hexString = Utilities.padHexString(Integer.toHexString(integer), 2);
         String networkString = hexString.substring(0, 2);
         Integer network = Integer.valueOf(networkString, 16);
         return network;

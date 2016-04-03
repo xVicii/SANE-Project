@@ -123,7 +123,7 @@ public class ARPTable implements Runnable{
 
         while (tableIterator.hasNext()){
             tmp = tableIterator.next();
-            if (tmp.getCurrentAgeInSeconds() > 60){
+            if (tmp.getCurrentAgeInSeconds() > NetworkConstants.ARP_TIMEOUT_VALUE){
                 table.remove(tmp);
             }
         }

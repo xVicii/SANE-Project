@@ -33,9 +33,13 @@ public class Scheduler {
     }
 
     private void createThreads(){
-        threadPoolManager.scheduleAtFixedRate(arpTable, 10, 80, TimeUnit.SECONDS);
+        threadPoolManager.scheduleAtFixedRate(
+                arpTable,
+                NetworkConstants.ROUTER_BOOT_TIME,
+                NetworkConstants.ROUTE_UPDATE_VALUE,
+                TimeUnit.SECONDS);
 
-        /*
+
         threadPoolManager.scheduleAtFixedRate(
                 routeTable,
                 NetworkConstants.ROUTER_BOOT_TIME,
@@ -49,7 +53,7 @@ public class Scheduler {
                 NetworkConstants.ROUTE_UPDATE_VALUE,
                 TimeUnit.SECONDS
         );
-        */
+
     }
 
 }
