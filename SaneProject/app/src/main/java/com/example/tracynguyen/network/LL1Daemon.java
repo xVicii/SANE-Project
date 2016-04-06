@@ -39,9 +39,9 @@ public class LL1Daemon {
         openUDPPort(); // open the UDP sockets and initialize them
         //MAC_IPAddressTable.addEntry(15663069, "10.30.54.163");
         //MAC_IPAddressTable.addEntry(15663069, "172.31.98.228");
-        MAC_IPAddressTable.addEntry(15663069, "172.16.1.59");
-        //MAC_IPAddressTable.addEntry(3355443, "10.30.54.163");
-        //MAC_IPAddressTable.addEntry(5592405, "10.30.54.163");
+        //MAC_IPAddressTable.addEntry(15663069, "172.16.1.59");
+        MAC_IPAddressTable.addEntry(3355443, "10.30.54.163");
+        MAC_IPAddressTable.addEntry(5592405, "10.30.54.163");
         new listenForUDPPacket().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, receiveSocket);
     }
 

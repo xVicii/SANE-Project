@@ -25,12 +25,14 @@ public class LL3P {
         this.checksum = 0;
     }
 
-    public LL3P(String srcAddress, String destAddress, String type, String ID, String payload){
+    public LL3P(String srcAddress, String destAddress, String type, String ID, String TTL, String payload){
         setSrcLL3PAddress(srcAddress);
         setDestLL3PAddress(destAddress);
         setTypeField(type);
         setIdentifier(ID);
+        setTimeToLive(TTL);
         setPayload(Utilities.stringToByte(payload));
+        this.checksum = 0;
     }
 
     public LL3P(byte[] newByte){
@@ -155,5 +157,6 @@ public class LL3P {
         setIdentifier(frameChars.substring(12, 16));
         setTimeToLive(frameChars.substring(16, 18));
         setPayload(Utilities.stringToByte(frameChars.substring(18, frameChars.length() - 4)));
+        this.checksum = 0;
     }
 }

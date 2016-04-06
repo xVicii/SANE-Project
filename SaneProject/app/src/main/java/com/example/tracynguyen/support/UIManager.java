@@ -19,6 +19,7 @@ import com.example.tracynguyen.network.LL2Daemon;
 import com.example.tracynguyen.network.LL2P;
 import com.example.tracynguyen.network.LL3P;
 import com.example.tracynguyen.network.LRPDaemon;
+import com.example.tracynguyen.network.Messenger;
 import com.example.tracynguyen.network.RouteTable;
 import com.example.tracynguyen.network.RouteTableEntry;
 import com.example.tracynguyen.network.Scheduler;
@@ -40,6 +41,7 @@ public class UIManager {
     LL2Daemon LL2_Daemon;
     LRPDaemon lrpDaemon;
     TestTables testTables;
+    Messenger messenger;
 
     /*Screen Widgets*/
     private TextView LL2PDestAddressTextView;
@@ -74,7 +76,7 @@ public class UIManager {
     private TextView LL3PPayloadTextView;
 
     public UIManager(){
-
+        //messenger = new Messenger(parentActivity);
     }
 
     public void getObjectReferences(Factory factory){
@@ -87,8 +89,10 @@ public class UIManager {
         //testTables = factory.getTestTables();
 
         lrpDaemon = factory.getLrpDaemon();
-        RoutingTableList = lrpDaemon.getRoutingTableAsList(); // TODO WHY???
-        ForwardingTableList = lrpDaemon.getForwardingTableAsList(); // TODO WHY???
+        RoutingTableList = lrpDaemon.getRoutingTableAsList();
+        ForwardingTableList = lrpDaemon.getForwardingTableAsList();
+        messenger = new Messenger(parentActivity);
+        messenger.getObjectReferences(myFactory);
         //initWidgets();
     }
 
@@ -260,5 +264,13 @@ public class UIManager {
         LL3PTypeFieldTextView.setText(frame.getTypeFieldHexString().toUpperCase());
         LL3PIDTextView.setText(frame.getIDHexString().toUpperCase());
         LL3PPayloadTextView.setText(frame.getPayloadHexString());
+    }
+
+    public void openMessengerWindow(){
+        messenger.openMessengerWindow();
+    }
+
+    public void receiveMessage(Integer sourceLL3P, String text){
+        messenger.receiveMessage(sourceLL3P, text);
     }
 }

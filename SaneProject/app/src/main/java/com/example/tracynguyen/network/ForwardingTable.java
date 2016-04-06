@@ -34,6 +34,7 @@ public class ForwardingTable extends RouteTable{
     }
 
     public void addRouteList(List<RouteTableEntry> routeList){
+        table.clear();
         Integer tmpNetwork = routeList.get(0).getNetDistPair().getNetworkNumber();
         addFibEntry(routeList.get(0));
 

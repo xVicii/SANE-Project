@@ -11,6 +11,7 @@ import com.example.tracynguyen.network.LL2Daemon;
 import com.example.tracynguyen.network.LL2P;
 import com.example.tracynguyen.network.LL3PDaemon;
 import com.example.tracynguyen.network.LRPDaemon;
+import com.example.tracynguyen.network.Messenger;
 import com.example.tracynguyen.network.RouteTable;
 import com.example.tracynguyen.network.Scheduler;
 import com.example.tracynguyen.network.TestTables;
@@ -32,6 +33,7 @@ public class Factory {
     ForwardingTable forwardingTable;
     LRPDaemon lrpDaemon;
     LL3PDaemon ll3PDaemon;
+    Messenger messenger;
     TestTables testTables;
 
     public Factory(Activity activity){
@@ -56,7 +58,7 @@ public class Factory {
         lrpDaemon = new LRPDaemon();
         routeTable = lrpDaemon.getRouteTable();
         forwardingTable = lrpDaemon.getFIB();
-
+        //messenger = new Messenger(this.getParentActivity());
         //testTables = new TestTables();
     }
 

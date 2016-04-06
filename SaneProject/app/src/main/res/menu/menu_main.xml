@@ -15,4 +15,8 @@
         android:id="@+id/transmitLL2PFrame"
         android:orderInCategory="120"
         android:title="Transmit LL2P Frame" />
+    <item
+        android:id="@+id/showMessenger"
+        android:orderInCategory="130"
+        android:title="Open Messenger"/>
 </menu>

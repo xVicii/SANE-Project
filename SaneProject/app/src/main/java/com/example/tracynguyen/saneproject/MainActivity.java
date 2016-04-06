@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
             LL1_Daemon.sendLL2PFrame();
         }
 
+        if (id == R.id.showMessenger){
+            uiManager.openMessengerWindow();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

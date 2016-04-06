@@ -16,4 +16,5 @@
     <string name="LL3PSrcAddress">LL3P Src: </string>
     <string name="LL3PType">LL3P Type: </string>
     <string name="LL3PID">LL3P ID: </string>
+    <string name="name_prompt">Send to?</string>
 </resources>
