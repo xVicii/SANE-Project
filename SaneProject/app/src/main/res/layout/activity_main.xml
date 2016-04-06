@@ -25,7 +25,7 @@
 
     <RelativeLayout
         android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_height="150dp"
         android:layout_below="@+id/view"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -231,7 +231,7 @@
 
     <RelativeLayout
         android:layout_width="400dp"
-        android:layout_height="300dp"
+        android:layout_height="fill_parent"
         android:layout_below="@+id/view"
         android:layout_toRightOf="@+id/AdjacencyTableLayout"
         android:layout_toEndOf="@+id/AdjacencyTableLayout"
@@ -252,7 +252,7 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="280dp"
             android:id="@+id/RoutingTableListView"
             android:layout_below="@+id/RoutingTableTextLabel"
             android:layout_alignParentLeft="true"
@@ -277,6 +277,110 @@
             android:layout_below="@+id/ForwardingTableTextLabel"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/LL2PLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#f4a4ff"
+        android:id="@+id/LL3PLayout">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/LL3PDestAddress"
+            android:id="@+id/LL3PDestAddressLabel"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            android:id="@+id/LL3PDestAddressTextView"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/LL3PDestAddressLabel"
+            android:layout_toEndOf="@+id/LL3PDestAddressLabel"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/LL3PSrcAddress"
+            android:id="@+id/LL3PSrcAddressLabel"
+            android:layout_below="@+id/LL3PDestAddressLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            android:id="@+id/LL3PSrcAddressTextView"
+            android:layout_below="@+id/LL3PDestAddressLabel"
+            android:layout_toRightOf="@+id/LL3PDestAddressLabel"
+            android:layout_toEndOf="@+id/LL3PDestAddressLabel"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/LL3PType"
+            android:id="@+id/LL3PTypeFieldLabel"
+            android:layout_below="@+id/LL3PSrcAddressLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            android:id="@+id/LL3PTypeFieldTextView"
+            android:layout_below="@+id/LL3PSrcAddressLabel"
+            android:layout_toRightOf="@+id/LL3PSrcAddressLabel"
+            android:layout_toEndOf="@+id/LL3PSrcAddressLabel"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/LL3PID"
+            android:id="@+id/LL3PIDFieldLabel"
+            android:layout_below="@+id/LL3PTypeFieldLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            android:id="@+id/LL3PIDFieldTextView"
+            android:layout_below="@+id/LL3PTypeFieldLabel"
+            android:layout_toRightOf="@+id/LL3PIDFieldLabel"
+            android:layout_toEndOf="@+id/LL3PIDFieldLabel"
+            android:textColor="#000000" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            android:id="@+id/LL3PPayloadTextView"
+            android:layout_below="@+id/LL3PIDFieldLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#000000" />
     </RelativeLayout>
 
 </RelativeLayout>

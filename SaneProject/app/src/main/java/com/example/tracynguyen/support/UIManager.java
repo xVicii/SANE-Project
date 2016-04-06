@@ -17,6 +17,7 @@ import com.example.tracynguyen.network.AdjacencyTableEntry;
 import com.example.tracynguyen.network.LL1Daemon;
 import com.example.tracynguyen.network.LL2Daemon;
 import com.example.tracynguyen.network.LL2P;
+import com.example.tracynguyen.network.LL3P;
 import com.example.tracynguyen.network.LRPDaemon;
 import com.example.tracynguyen.network.RouteTable;
 import com.example.tracynguyen.network.RouteTableEntry;
@@ -65,6 +66,13 @@ public class UIManager {
     private List<RouteTableEntry> ForwardingTableList;
     private ArrayAdapter ForwardingTableArrayAdapter;
 
+    /*LL3P Screen Widgets*/
+    private TextView LL3PDestAddressTextView;
+    private TextView LL3PSrcAddressTextView;
+    private TextView LL3PTypeFieldTextView;
+    private TextView LL3PIDTextView;
+    private TextView LL3PPayloadTextView;
+
     public UIManager(){
 
     }
@@ -100,6 +108,13 @@ public class UIManager {
         LL2PTypeFieldTextView = (TextView) parentActivity.findViewById(R.id.LL2PTypeFieldTextView);
         LL2PCRCTextView = (TextView) parentActivity.findViewById(R.id.LL2PCRCTextView);
         LL2PPayloadTextView = (TextView) parentActivity.findViewById(R.id.LL2PPayloadTextView);
+
+        /*LL3P Widgets*/
+        LL3PDestAddressTextView = (TextView) parentActivity.findViewById(R.id.LL3PDestAddressTextView);
+        LL3PSrcAddressTextView = (TextView) parentActivity.findViewById(R.id.LL3PSrcAddressTextView);
+        LL3PTypeFieldTextView = (TextView) parentActivity.findViewById(R.id.LL3PTypeFieldTextView);
+        LL3PIDTextView = (TextView) parentActivity.findViewById(R.id.LL3PIDFieldTextView);
+        LL3PPayloadTextView = (TextView) parentActivity.findViewById(R.id.LL3PPayloadTextView);
 
         /*Adjacency Table Widgets*/
         AdjacencyTableLL2PAddressTextEdit = (EditText) parentActivity.findViewById(R.id.AdjacencyTableLL2PAddressTextEdit);
@@ -146,10 +161,10 @@ public class UIManager {
     }
 
     public void updateLL2PDisplay(LL2P frame){
-        LL2PDestAddressTextView.setText(frame.getDestMACAddressHexString());
-        LL2PSrcAddressTextView.setText(frame.getSrcMACAddressHexString());
-        LL2PTypeFieldTextView.setText(frame.getTypeFieldHexString());
-        LL2PCRCTextView.setText(frame.getCRCHexString());
+        LL2PDestAddressTextView.setText(frame.getDestMACAddressHexString().toUpperCase());
+        LL2PSrcAddressTextView.setText(frame.getSrcMACAddressHexString().toUpperCase());
+        LL2PTypeFieldTextView.setText(frame.getTypeFieldHexString().toUpperCase());
+        LL2PCRCTextView.setText(frame.getCRCHexString().toUpperCase());
         LL2PPayloadTextView.setText(frame.getPayloadHexString());
     }
 
@@ -237,5 +252,13 @@ public class UIManager {
         Iterator<RouteTableEntry> listIterator = ForwardingTableList.iterator();
         while (listIterator.hasNext())
             ForwardingTableArrayAdapter.add(listIterator.next());
+    }
+
+    public void updateLL3PDisplay(LL3P frame){
+        LL3PDestAddressTextView.setText(frame.getDestLL3PAddressHexString().toUpperCase());
+        LL3PSrcAddressTextView.setText(frame.getSrcLL3PAddressHexString().toUpperCase());
+        LL3PTypeFieldTextView.setText(frame.getTypeFieldHexString().toUpperCase());
+        LL3PIDTextView.setText(frame.getIDHexString().toUpperCase());
+        LL3PPayloadTextView.setText(frame.getPayloadHexString());
     }
 }

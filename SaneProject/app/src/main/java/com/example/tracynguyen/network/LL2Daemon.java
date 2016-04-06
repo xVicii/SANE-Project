@@ -15,6 +15,7 @@ public class LL2Daemon {
     LL2P LL2PFrame;
     ARPDaemon arpDaemon;
     private LRPDaemon lrpDaemon;
+    private LL3PDaemon ll3PDaemon;
 
     private String LL2PAddress;
     private Integer LL2PIntegerAddress;
@@ -29,6 +30,7 @@ public class LL2Daemon {
         ll1Daemon = factory.getLL1_Daemon();
         arpDaemon = factory.getArpDaemon();
         lrpDaemon = factory.getLrpDaemon();
+        ll3PDaemon = factory.getLl3PDaemon();
     }
 
     public void setLocalLL2PAddress(Integer LocalLL2PAddress){
@@ -83,6 +85,7 @@ public class LL2Daemon {
             uiManager.updateLL2PDisplay(receivedFrame);
             if (typeField.equals(NetworkConstants.LL3P_PACKET)){
                 uiManager.raiseToast("Received type: 0x8001 LL3P packet");
+                ll3PDaemon.receiveLL3PPacket(receivedFrame.getPayload());
             }
             else if (typeField.equals(NetworkConstants.ARP_UPDATE)){
                 uiManager.raiseToast("Received type: 0x8002 ARP update");

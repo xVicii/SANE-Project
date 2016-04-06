@@ -23,8 +23,6 @@ public class LRPDaemon implements Runnable{
     public LRPDaemon(){
         routeTable = new RouteTable();
         forwardingTable = new ForwardingTable();
-
-        //routeTable.addEntry(3841,12,1,3841);
     }
 
     public void getObjectReferences(Factory factory){
@@ -34,6 +32,8 @@ public class LRPDaemon implements Runnable{
         uiManager = factory.getUiManager();
         activity = factory.getParentActivity();
         ll2Daemon = factory.getLL2_Daemon();
+        routeTable.getObjectReferences(factory);
+        forwardingTable.getObjectReferences(factory);
     }
 
     public RouteTable getRouteTable() {

@@ -9,6 +9,7 @@ import com.example.tracynguyen.network.ForwardingTable;
 import com.example.tracynguyen.network.LL1Daemon;
 import com.example.tracynguyen.network.LL2Daemon;
 import com.example.tracynguyen.network.LL2P;
+import com.example.tracynguyen.network.LL3PDaemon;
 import com.example.tracynguyen.network.LRPDaemon;
 import com.example.tracynguyen.network.RouteTable;
 import com.example.tracynguyen.network.Scheduler;
@@ -30,6 +31,7 @@ public class Factory {
     RouteTable routeTable;
     ForwardingTable forwardingTable;
     LRPDaemon lrpDaemon;
+    LL3PDaemon ll3PDaemon;
     TestTables testTables;
 
     public Factory(Activity activity){
@@ -47,6 +49,7 @@ public class Factory {
         LL2PFrame = new LL2P("EEFFDD", "BEEFED", "8001", "HelloWorld");
         LL1_Daemon = new LL1Daemon();
         LL2_Daemon = new LL2Daemon();
+        ll3PDaemon = new LL3PDaemon();
         arpDaemon = new ARPDaemon();
         arpTable = arpDaemon.getArpTable();
         scheduler = new Scheduler();
@@ -64,6 +67,7 @@ public class Factory {
         arpDaemon.getObjectReferences(this);
         scheduler.getObjectReferences(this);
         lrpDaemon.getObjectReferences(this);
+        ll3PDaemon.getObjectReferences(this);
         //testTables.getObjectReferences(this);
 
     }
@@ -99,6 +103,8 @@ public class Factory {
     public LRPDaemon getLrpDaemon() {
         return lrpDaemon;
     }
+
+    public LL3PDaemon getLl3PDaemon() { return ll3PDaemon; }
 
     public TestTables getTestTables() {
         return testTables;

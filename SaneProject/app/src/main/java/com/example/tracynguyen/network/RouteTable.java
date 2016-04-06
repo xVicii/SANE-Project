@@ -1,8 +1,10 @@
 package com.example.tracynguyen.network;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.example.tracynguyen.support.Factory;
 import com.example.tracynguyen.support.NetworkConstants;
 import com.example.tracynguyen.support.UIManager;
 
@@ -22,6 +24,11 @@ public class RouteTable implements Runnable{
 
     public RouteTable(){
         table = new TreeSet<RouteTableEntry>();
+    }
+
+    public void getObjectReferences(Factory factory){
+        uiManager = factory.getUiManager();
+        activity = factory.getParentActivity();
     }
 
     public List<RouteTableEntry> getRouteList(){
@@ -62,6 +69,7 @@ public class RouteTable implements Runnable{
             while (tableIterator.hasNext() && !found) {
                 tmp = tableIterator.next();
                 if (tmp.getCurrentAgeInSeconds() > NetworkConstants.ROUTE_UPDATE_VALUE * 3) {
+                    Log.i(NetworkConstants.TAG, "Removing Route " + tmp.toString());
                     table.remove(tmp);
                     found = true;
                 }
@@ -88,13 +96,17 @@ public class RouteTable implements Runnable{
 
     @Override
     public void run() {
-        this.removeOldRoutes();
-
-        activity.runOnUiThread(new Runnable(){
-              public void run(){
-                  uiManager.resetRoutingTableListAdapter();
-                  uiManager.resetForwardingTableListAdapter();
-              }
-           });
+        try {
+            this.removeOldRoutes();
+            // need to delete all entries on forwarding table and re-populate
+            activity.runOnUiThread(new Runnable() {
+                public void run() {
+                    uiManager.resetRoutingTableListAdapter();
+                    uiManager.resetForwardingTableListAdapter();
+                }
+            });
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

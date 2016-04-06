@@ -54,6 +54,13 @@ public class NetworkConstants {
     public static final int ROUTER_BOOT_TIME = 10;
     public static final int ROUTE_UPDATE_VALUE = 10;
 
+    // LL3P Constants
+    public static final int LL3P_ADDRESS_LENGTH = 2;
+    public static final int LL3P_TYPE_LENGTH = 2;
+    public static final int LL3P_IDENTIFIER_LENGTH = 2;
+    public static final int LL3P_TTL_LENGTH = 1;
+    public static final int LL3P_CHECKSUM_LENGTH = 2;
+
     public NetworkConstants (Activity parentActivity){
         //IP_ADDRESS = this.getIPAddress(true);
         IP_ADDRESS = getLocalIpAddress(); // call the local method to get the IP address of this device.
