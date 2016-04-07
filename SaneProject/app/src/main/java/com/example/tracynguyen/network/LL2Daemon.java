@@ -43,7 +43,7 @@ public class LL2Daemon {
                 Utilities.padHexString(Integer.toHexString(destinationLL2PAddress), NetworkConstants.LL2P_ADDRESS_LENGTH),
                 NetworkConstants.MY_LL2P_ADDRESS,
                 Utilities.padHexString(Integer.toHexString(LL2PType), NetworkConstants.LL2P_TYPE_LENGTH),
-                Utilities.byteToString(payload));
+                new String(payload));
 
         sendLL2PFrame(newFrame);
     }

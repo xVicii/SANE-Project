@@ -20,21 +20,20 @@ import com.example.tracynguyen.network.TestTables;
  * Created by tracy.nguyen on 1/21/2016.
  */
 public class Factory {
-    Activity parentActivity;
-    UIManager uiManager;
-    NetworkConstants networkConstants;
-    LL2P LL2PFrame;
-    LL1Daemon LL1_Daemon;
-    LL2Daemon LL2_Daemon;
-    ARPTable arpTable;
-    Scheduler scheduler;
-    ARPDaemon arpDaemon;
-    RouteTable routeTable;
-    ForwardingTable forwardingTable;
-    LRPDaemon lrpDaemon;
-    LL3PDaemon ll3PDaemon;
-    Messenger messenger;
-    TestTables testTables;
+    private Activity parentActivity;
+    private UIManager uiManager;
+    private NetworkConstants networkConstants;
+    private LL2P LL2PFrame;
+    private LL1Daemon LL1_Daemon;
+    private LL2Daemon LL2_Daemon;
+    private ARPTable arpTable;
+    private Scheduler scheduler;
+    private ARPDaemon arpDaemon;
+    private RouteTable routeTable;
+    private ForwardingTable forwardingTable;
+    private LRPDaemon lrpDaemon;
+    private LL3PDaemon ll3PDaemon;
+    private TestTables testTables;
 
     public Factory(Activity activity){
         parentActivity = activity;
@@ -48,7 +47,7 @@ public class Factory {
     private void createAllObjects(){
         uiManager = new UIManager();
         networkConstants = new NetworkConstants(parentActivity);
-        LL2PFrame = new LL2P("EEFFDD", "BEEFED", "8001", "HelloWorld");
+        //LL2PFrame = new LL2P("EEFFDD", "BEEFED", "8001", "Hello World!");
         LL1_Daemon = new LL1Daemon();
         LL2_Daemon = new LL2Daemon();
         ll3PDaemon = new LL3PDaemon();
@@ -58,7 +57,6 @@ public class Factory {
         lrpDaemon = new LRPDaemon();
         routeTable = lrpDaemon.getRouteTable();
         forwardingTable = lrpDaemon.getFIB();
-        //messenger = new Messenger(this.getParentActivity());
         //testTables = new TestTables();
     }
 
@@ -113,7 +111,7 @@ public class Factory {
     }
 
     private void testStuff() {
-        uiManager.updateLL2PDisplay(LL2PFrame);
+        //uiManager.updateLL2PDisplay(LL2PFrame);
         //testTables.loadTestRoutes();
         //testTables.removeTestRoutes();
         //testTables.checkExpiration();

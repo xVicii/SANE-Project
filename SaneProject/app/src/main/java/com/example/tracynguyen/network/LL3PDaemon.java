@@ -77,10 +77,10 @@ public class LL3PDaemon {
     public void sendLL3PPacket(LL3P packet){
         // Decrement TTL here?
         try{
-            ll2Daemon.sendLL2PFrame(Utilities.stringToByte(packet.toString()),
+            ll2Daemon.sendLL2PFrame(packet.toString().getBytes(),
                     arpTable.getLL2PAddressFor(forwardingTable.getNextHopAddress(packet.getDestLL3PAddress())),
                     Integer.valueOf(NetworkConstants.LL3P_PACKET, 16)); // 0x8001
-            Log.i(NetworkConstants.TAG, packet.toString());
+            Log.i(NetworkConstants.TAG, "Sending message: " + packet.toString());
         } catch(Exception e){
             e.printStackTrace();
         }
@@ -93,7 +93,7 @@ public class LL3PDaemon {
                 NetworkConstants.LL3P_PACKET, // what to set type?
                 "0000", // what to set ID?
                 "FF",
-                Utilities.byteToString(payload));
+                new String(payload));
 
         sendLL3PPacket(packet);
     }

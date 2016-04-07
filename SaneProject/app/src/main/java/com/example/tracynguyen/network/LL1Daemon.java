@@ -22,23 +22,21 @@ import java.util.List;
  */
 public class LL1Daemon {
 
-    UIManager uiManager;
-    LL2P LL2PFrame;
-    LL2Daemon LL2P_Daemon;
+    private UIManager uiManager;
+    private LL2P LL2PFrame;
+    private LL2Daemon LL2P_Daemon;
 
     // define constant for port number
     private final static int receivePort = 49999;
 
     // define a socket
-    DatagramSocket sendSocket;
-    DatagramSocket receiveSocket;
-    AdjacencyTable MAC_IPAddressTable;
+    private DatagramSocket sendSocket;
+    private DatagramSocket receiveSocket;
+    private AdjacencyTable MAC_IPAddressTable;
 
     public LL1Daemon(){
         MAC_IPAddressTable = new AdjacencyTable(); // set up adjacency table
         openUDPPort(); // open the UDP sockets and initialize them
-        //MAC_IPAddressTable.addEntry(15663069, "10.30.54.163");
-        //MAC_IPAddressTable.addEntry(15663069, "172.31.98.228");
         //MAC_IPAddressTable.addEntry(15663069, "172.16.1.59");
         MAC_IPAddressTable.addEntry(3355443, "10.30.54.163");
         MAC_IPAddressTable.addEntry(5592405, "10.30.54.163");
@@ -69,6 +67,7 @@ public class LL1Daemon {
 
     public void sendLL2PFrame(LL2P frame){
         String frameToSend = new String(frame.toString());
+        Log.i(NetworkConstants.TAG, "Here is the frame being Sent: "+frameToSend);
         boolean foundValidAddress = true;
 
         InetAddress IPAddress = null;

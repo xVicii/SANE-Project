@@ -34,14 +34,14 @@ import java.util.List;
  * Created by tracy.nguyen on 1/21/2016.
  */
 public class UIManager {
-    Activity parentActivity;
-    Context context;
-    Factory myFactory;
-    LL1Daemon LL1_Daemon;
-    LL2Daemon LL2_Daemon;
-    LRPDaemon lrpDaemon;
-    TestTables testTables;
-    Messenger messenger;
+    private Activity parentActivity;
+    private Context context;
+    private Factory myFactory;
+    private LL1Daemon LL1_Daemon;
+    private LL2Daemon LL2_Daemon;
+    private LRPDaemon lrpDaemon;
+    private TestTables testTables;
+    private Messenger messenger;
 
     /*Screen Widgets*/
     private TextView LL2PDestAddressTextView;

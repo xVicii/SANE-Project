@@ -79,7 +79,7 @@ public class LRP {
     }
 
     public byte[] getBytes(){
-        return Utilities.stringToByte(toString());
+        return toString().getBytes();
     }
 
     public void setSourceAddress(Integer sourceAddress) {

@@ -16,9 +16,9 @@ import com.example.tracynguyen.support.NetworkConstants;
 import com.example.tracynguyen.support.UIManager;
 
 public class MainActivity extends AppCompatActivity {
-    Factory myFactory;
-    UIManager uiManager;
-    LL1Daemon LL1_Daemon;
+    private Factory myFactory;
+    private UIManager uiManager;
+    private LL1Daemon LL1_Daemon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

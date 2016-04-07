@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 import com.example.tracynguyen.saneproject.R;
 import com.example.tracynguyen.support.Factory;
-import com.example.tracynguyen.support.SoundPlayer;
+//import com.example.tracynguyen.support.SoundPlayer;
 import com.example.tracynguyen.support.UIManager;
 
 /**
@@ -92,7 +92,7 @@ public class Messenger implements Runnable {
 	private MessageAdapter messageAdapter;				  // the custom adapter to build and display screen objects.
 	
 	private ScheduledThreadPoolExecutor nameWatcher;			  // manages thread to watch the spinner and keep it up to date
-	private SoundPlayer soundPlayer;
+	//private SoundPlayer soundPlayer;
 	/**
 	 * Constructor. 
 	 * @param activity - pass the parent activity that contains context and UI elements.
@@ -197,7 +197,7 @@ public class Messenger implements Runnable {
 			
 			layer3Daemon.sendPayloadToLL3PDestination(destinationLL3P, messageEditText.getText().toString().getBytes());
 			messageEditText.setText("");
-			soundPlayer.playSendMessageSound();
+			//soundPlayer.playSendMessageSound();
 		}
 	};
 	
@@ -217,7 +217,7 @@ public class Messenger implements Runnable {
 			if (network >= 0 && network <16){
 				String name = new String(allNamesAndNetworks.get(network-1).name);
 				addMessageAndSource(name,payload);
-				soundPlayer.playReceiveMessageSound();
+				//soundPlayer.playReceiveMessageSound();
 			} else {
 				uiManager.raiseToast("Network out of Bounds in Chat. Network = "+Integer.toString(network) +
 											", message was: "+payload);
@@ -225,7 +225,7 @@ public class Messenger implements Runnable {
 		}
 		else {
 			uiManager.raiseToast("chat window not open, message received");
-			soundPlayer.playAlertSound();
+			//soundPlayer.playAlertSound();
 		}
 	}
 	
